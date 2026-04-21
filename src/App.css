@@ -1,0 +1,363 @@
+/* Container for the whole app */
+.app-container {
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 100%);
+  min-height: 100vh;
+}
+
+.main-content {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 20px;
+  padding: 20px;
+  max-height: 100vh;
+  overflow: hidden;
+}
+
+/* Main Player Section */
+.player-section {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  overflow-y: auto;
+  padding-right: 10px;
+}
+
+.player-section::-webkit-scrollbar {
+  width: 8px;
+}
+
+.player-section::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.player-section::-webkit-scrollbar-thumb {
+  background: #444;
+  border-radius: 4px;
+}
+
+.player-section::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* Video Player */
+.video-player {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: linear-gradient(135deg, #1f1f1f 0%, #2a2a2a 100%);
+  border: 1.5px solid #333;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+}
+
+.video-player iframe {
+  border-radius: 12px;
+}
+
+.player-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-size: 80px;
+  color: #646cff;
+  opacity: 0.6;
+}
+
+.player-placeholder p {
+  font-size: 1rem;
+  margin: 0;
+}
+
+/* Song Details */
+.song-details {
+  padding: 20px 0;
+}
+
+.song-details h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #fff;
+  margin: 0 0 10px 0;
+  line-height: 1.2;
+}
+
+.song-details .artist {
+  font-size: 1.1rem;
+  color: #a0a0a0;
+  margin: 0;
+}
+
+/* Playback Controls */
+.controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  padding: 30px 0;
+  margin-top: 20px;
+}
+
+.control-btn {
+  width: 60px;
+  height: 60px;
+  border: none;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #646cff 0%, #535bf2 100%);
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 12px rgba(100, 108, 255, 0.3);
+}
+
+.control-btn:hover:not(:disabled) {
+  transform: scale(1.1);
+  box-shadow: 0 8px 20px rgba(100, 108, 255, 0.4);
+}
+
+.control-btn:active:not(:disabled) {
+  transform: scale(0.95);
+}
+
+.control-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.play-btn {
+  width: 80px;
+  height: 80px;
+  font-size: 32px;
+  background: linear-gradient(135deg, #646cff 0%, #a78bfa 100%);
+}
+
+.play-btn:hover:not(:disabled) {
+  transform: scale(1.15);
+}
+
+.no-songs {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  font-size: 1.2rem;
+  color: #666;
+}
+
+/* Sidebar */
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  background: rgba(30, 30, 30, 0.5);
+  border: 1px solid #333;
+  border-radius: 12px;
+  padding: 16px;
+  overflow: hidden;
+  max-height: 100vh;
+}
+
+.sidebar h2 {
+  font-size: 1.2rem;
+  color: #fff;
+  margin: 0 0 16px 0;
+  font-weight: 600;
+}
+
+/* Song List */
+.song-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.song-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.song-list::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.song-list::-webkit-scrollbar-thumb {
+  background: #444;
+  border-radius: 3px;
+}
+
+.song-list::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* Song Item */
+.song-item {
+  display: flex;
+  gap: 12px;
+  padding: 8px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid transparent;
+}
+
+.song-item:hover {
+  background: rgba(100, 108, 255, 0.1);
+  border-color: #444;
+}
+
+.song-item.active {
+  background: rgba(100, 108, 255, 0.2);
+  border-color: #646cff;
+}
+
+/* Song Thumbnail */
+.song-thumbnail {
+  width: 56px;
+  height: 56px;
+  background: linear-gradient(135deg, #2a2a2a 0%, #3a3a3a 100%);
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  color: #646cff;
+  flex-shrink: 0;
+  overflow: hidden;
+  position: relative;
+}
+
+.song-thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+/* Song Info */
+.song-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 0;
+}
+
+.song-title {
+  margin: 0;
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.2;
+}
+
+.song-artist {
+  margin: 2px 0 0 0;
+  color: #888;
+  font-size: 0.8rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .main-content {
+    grid-template-columns: 1fr 300px;
+    gap: 15px;
+    padding: 15px;
+  }
+
+  .song-details h1 {
+    font-size: 2rem;
+  }
+
+  .control-btn {
+    width: 50px;
+    height: 50px;
+    font-size: 20px;
+  }
+
+  .play-btn {
+    width: 70px;
+    height: 70px;
+    font-size: 28px;
+  }
+}
+
+@media (max-width: 768px) {
+  .main-content {
+    grid-template-columns: 1fr;
+    max-height: auto;
+  }
+
+  .sidebar {
+    max-height: 400px;
+  }
+
+  .song-details h1 {
+    font-size: 1.8rem;
+  }
+
+  .video-player {
+    aspect-ratio: 16 / 9;
+  }
+
+  .controls {
+    gap: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .main-content {
+    padding: 10px;
+    gap: 10px;
+  }
+
+  .player-section {
+    padding-right: 0;
+  }
+
+  .sidebar {
+    max-height: 300px;
+  }
+
+  .song-details h1 {
+    font-size: 1.4rem;
+  }
+
+  .song-thumbnail {
+    width: 48px;
+    height: 48px;
+    font-size: 20px;
+  }
+
+  .control-btn {
+    width: 45px;
+    height: 45px;
+    font-size: 18px;
+  }
+
+  .play-btn {
+    width: 60px;
+    height: 60px;
+    font-size: 24px;
+  }
+}
