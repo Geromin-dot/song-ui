@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { getSongs, postSong } from './services/api';
+import { getSongs, deleteSong, postSong } from './services/api';
 import './App.css';
 import {
   Heart,
@@ -8,6 +8,7 @@ import {
   SkipForward,
   Play,
   Pause,
+  Trash2,
   Plus,
   Music
 } from 'lucide-react';
@@ -52,6 +53,35 @@ function App() {
     setIsPlaying(true);
   };
 
+
+  // Delete song
+  const handleDeleteSong = (e, id, index) => {
+    e.stopPropagation();
+    if (window.confirm('Are you sure you want to delete this song?')) {
+      deleteSong(id)
+        .then(() => {
+          const newSongs = songs.filter(song => song.id !== id);
+          setSongs(newSongs);
+
+          if (selectedIndex === index) {
+            if (newSongs.length > 0) {
+              const nextIndex = Math.min(index, newSongs.length - 1);
+              setSelectedSong(newSongs[nextIndex]);
+              setSelectedIndex(nextIndex);
+            } else {
+              setSelectedSong(null);
+              setSelectedIndex(0);
+            }
+          } else if (selectedIndex > index) {
+            setSelectedIndex(selectedIndex - 1);
+          }
+        })
+        .catch(err => {
+          console.error(err);
+          alert('Failed to delete song');
+        });
+    }
+  };
 
   // Add Song logic
   const handleInputChange = (e) => {
@@ -246,6 +276,13 @@ function App() {
                     <p className="song-title">{song.title}</p>
                     <p className="song-artist">{song.artist || 'Unknown'}</p>
                   </div>
+                  <button
+                    className="delete-song-btn"
+                    onClick={(e) => handleDeleteSong(e, song.id, index)}
+                    title="Delete song"
+                  >
+                    <Trash2 size={18} />
+                  </button>
                 </li>
               );
             })}

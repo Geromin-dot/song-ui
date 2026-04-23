@@ -370,6 +370,35 @@
   text-overflow: ellipsis;
 }
 
+.delete-song-btn {
+  background: transparent;
+  border: none;
+  color: #555;
+  cursor: pointer;
+  padding: 8px;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  border-radius: 6px;
+  opacity: 0; /* Hidden by default */
+}
+
+.song-item:hover .delete-song-btn {
+  opacity: 1; /* Show on hover */
+}
+
+.delete-song-btn:hover {
+  color: #ff4d4d;
+  background: rgba(255, 77, 77, 0.1);
+  transform: scale(1.1);
+}
+
+.delete-song-btn:active {
+  transform: scale(0.9);
+}
+
 /* Responsive Design */
 /* Modal Styles */
 .modal-overlay {
