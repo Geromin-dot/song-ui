@@ -21,21 +21,4 @@ export const postSong = async (songData) => {
   
   return response.json();
 };
-
-export const deleteSong = async (id) => {
-  const response = await fetch(`${BASE_URL}/${id}`, {
-    method: "DELETE",
-  });
-  
-  if (!response.ok) {
-    const errorText = await response.text().catch(() => "Unknown error");
-    throw new Error(`Failed to delete song: ${errorText || response.statusText}`);
-  }
-
-  // Some APIs return empty response or plain text on success
-  const contentType = response.headers.get("content-type");
-  if (contentType && contentType.includes("application/json")) {
-    return response.json();
-  }
-  return { success: true };
-};
+
