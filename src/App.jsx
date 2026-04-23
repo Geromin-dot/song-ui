@@ -1,16 +1,16 @@
 import { useEffect, useState } from 'react';
 import { getSongs, deleteSong, postSong } from './services/api';
 import './App.css';
-import { 
-  Heart, 
-  Share2, 
-  SkipBack, 
-  SkipForward, 
-  Play, 
-  Pause, 
-  Trash2, 
-  Plus, 
-  Music 
+import {
+  Heart,
+  Share2,
+  SkipBack,
+  SkipForward,
+  Play,
+  Pause,
+  Trash2,
+  Plus,
+  Music
 } from 'lucide-react';
 
 function App() {
@@ -19,7 +19,7 @@ function App() {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  
+
   // Form state
   const [formData, setFormData] = useState({
     title: '',
@@ -61,7 +61,7 @@ function App() {
         .then(() => {
           const newSongs = songs.filter(song => song.id !== id);
           setSongs(newSongs);
-          
+
           if (selectedIndex === index) {
             if (newSongs.length > 0) {
               const nextIndex = Math.min(index, newSongs.length - 1);
@@ -90,7 +90,7 @@ function App() {
 
   const handleAddSong = (e) => {
     e.preventDefault();
-    
+
     // Simple validation
     if (!formData.title || !formData.url) {
       alert('Title and YouTube URL are required');
@@ -212,16 +212,16 @@ function App() {
 
               {/* Playback Controls */}
               <div className="controls">
-                <button 
-                  className="control-btn prev-btn" 
+                <button
+                  className="control-btn prev-btn"
                   onClick={handlePrevious}
                   disabled={selectedIndex === 0}
                   title="Previous"
                 >
                   <SkipBack size={24} fill="currentColor" />
                 </button>
-                <button 
-                  className="control-btn play-btn" 
+                <button
+                  className="control-btn play-btn"
                   onClick={handlePlayPause}
                   title={isPlaying ? "Pause" : "Play"}
                 >
@@ -231,8 +231,8 @@ function App() {
                     <Play size={32} fill="currentColor" style={{ marginLeft: '4px' }} />
                   )}
                 </button>
-                <button 
-                  className="control-btn next-btn" 
+                <button
+                  className="control-btn next-btn"
                   onClick={handleNext}
                   disabled={selectedIndex === songs.length - 1}
                   title="Next"
@@ -254,7 +254,7 @@ function App() {
               <Plus size={18} style={{ marginRight: '4px' }} /> Add Song
             </button>
           </div>
-          
+
           <ul className="song-list">
             {songs.map((song, index) => {
               const thumbnailUrl = getYouTubeThumbnail(song.youtubeUrl || song.youtube_url || song.url);
@@ -275,7 +275,7 @@ function App() {
                     <p className="song-title">{song.title}</p>
                     <p className="song-artist">{song.artist || 'Unknown'}</p>
                   </div>
-                  <button 
+                  <button
                     className="delete-song-btn"
                     onClick={(e) => handleDeleteSong(e, song.id, index)}
                     title="Delete song"
@@ -297,52 +297,52 @@ function App() {
             <form onSubmit={handleAddSong}>
               <div className="form-group">
                 <label>Title</label>
-                <input 
-                  type="text" 
-                  name="title" 
-                  value={formData.title} 
-                  onChange={handleInputChange} 
+                <input
+                  type="text"
+                  name="title"
+                  value={formData.title}
+                  onChange={handleInputChange}
                   placeholder="e.g. Ligaya"
                   required
                 />
               </div>
               <div className="form-group">
                 <label>Artist</label>
-                <input 
-                  type="text" 
-                  name="artist" 
-                  value={formData.artist} 
-                  onChange={handleInputChange} 
+                <input
+                  type="text"
+                  name="artist"
+                  value={formData.artist}
+                  onChange={handleInputChange}
                   placeholder="e.g. Eraserheads"
                 />
               </div>
               <div className="form-group">
                 <label>Album</label>
-                <input 
-                  type="text" 
-                  name="album" 
-                  value={formData.album} 
-                  onChange={handleInputChange} 
+                <input
+                  type="text"
+                  name="album"
+                  value={formData.album}
+                  onChange={handleInputChange}
                   placeholder="e.g. Ultraelectromagneticpop!"
                 />
               </div>
               <div className="form-group">
                 <label>Genre</label>
-                <input 
-                  type="text" 
-                  name="genre" 
-                  value={formData.genre} 
-                  onChange={handleInputChange} 
+                <input
+                  type="text"
+                  name="genre"
+                  value={formData.genre}
+                  onChange={handleInputChange}
                   placeholder="e.g. OPM"
                 />
               </div>
               <div className="form-group">
                 <label>YouTube URL</label>
-                <input 
-                  type="text" 
-                  name="url" 
-                  value={formData.url} 
-                  onChange={handleInputChange} 
+                <input
+                  type="text"
+                  name="url"
+                  value={formData.url}
+                  onChange={handleInputChange}
                   placeholder="https://youtu.be/..."
                   required
                 />
